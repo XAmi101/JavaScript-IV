@@ -1,9 +1,10 @@
 //Person
-class person {
+class Person {
   constructor(attributes) {
     this.name = attributes.name;
     this.age = attributes.age;
     this.location = attributes.location;
+    this.grade = Math.floor(Math.random()* 100);
   }
   speak() {
     return `Hello my name is ${this.name}, and I am from ${this.location}`;
@@ -13,31 +14,66 @@ class person {
 
 //Instructor
 
-class Instructor extends person {
+class Instructor extends Person {
    constructor(instructorAttributes){
        super(instructorAttributes);
        this.specialty = instructorAttributes.specialty;
        this.favLanguage = instructorAttributes.favLanguage;
        this.catchPhrase = instructorAttributes.catchPhrase;
    }
+   demo(subject){
+       return `Today we are learning about ${subject}`
+   }
+   grade(student, subject){
+        return `${this.name} receives a perfect score on ${subject}`
+   }
  }
-
-
-
-
-
 
 
 //Students
 
-
-
-
-
+class Student extends Person {
+  constructor(studentAttributes) {
+    super(studentAttributes);
+    this.previousBackground = studentAttributes.previousBackground;
+    this.className = studentAttributes.className
+    this.favSubjects = studentAttributes.favSubjects;
+  }
+  listsSubjects() {
+    for(let i=0; i < favSubjects.length; i++ ){
+      return (this.favSubjects[i]);
+    }
+  }
+  PRAssignment(subject){
+      return `${this.name} has submitted a PR for ${subject}`
+  }
+  sprintChallenge(subject){
+      return `${this.name} has begun sprint challenge on ${subject}`
+  }
+}
 
 
 
 //PM
+
+class ProjectManager extends Instructor {
+   constructor(pmAttributes){
+       super(pmAttributes);
+       this.gradClassName = pmAttributes.gradClassName;
+       this.favInstructor = pmAttributes.favInstructor;
+   }
+   standUp(name, channel){
+       return `${this.name} announces to ${channel}, @channel standy times!`
+   }
+   debugsCode(student, subject){
+       return `${this.name} debugs ${student}'s code on ${subject}`
+   }
+}
+
+
+
+
+
 
 
 
@@ -166,3 +202,9 @@ const austin = new ProjectManager({
 });
 
 // CODE here for your Lambda Classes
+
+
+ console.log("Grade:", dan.grade(isaiah.name, 'Javascript')) ;
+ console.log("Debugs Code:", darren.debugsCode(austin.name, 'Java')) ;
+ console.log("Greeting:", pat.speak());
+ console.log("Instructor Dan:", dan);
